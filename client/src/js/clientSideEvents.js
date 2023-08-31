@@ -35,7 +35,6 @@ const clientSideEvents = () => {
 
         // get volume
         socket.on('getVolume', vol => {
-
             console.log(`Volume: ${vol}`)
 
             // update volume in store
@@ -44,16 +43,15 @@ const clientSideEvents = () => {
 
         // get tracks array
         socket.on('getTracksData', data => {
-
+            console.log('getTracksData', data)
+            data = JSON.parse(data.replace('{{', '[[').replace('}}', ']]').replace('}, {', '], [').replaceAll('\\\\', '\\'))
             // update data in store
             store.dispatch(updateTracksData(data))
         })
 
         // get playlists array
         socket.on('getPlaylists', data => {
-
-            console.log(data)
-
+            console.log(`playlists:`, data)
             // update data in store
             store.dispatch(updatePlaylists(data.filter(p => junkPlaylists.indexOf(p) === -1)))
         })
@@ -77,7 +75,7 @@ const clientSideEvents = () => {
         })
 
         socket.on('updatePlayerPosition', position => {
-
+            console.log(`updatePlayerPosition: ${position}`)
             store.dispatch(updatePlaylerPosition(position))
         })
 

@@ -64,6 +64,10 @@
     transform: translateX(-100%);
 }
 
+.playlist__item {
+    cursor: pointer;
+}
+
 .tracklist {
     right: 0;
     width: 275px;
@@ -72,13 +76,15 @@
 
 .tracklist__item {
     clear: both;
+    cursor: pointer;
+
+    span {
+        &:first-child {
+            max-width: 175px;
+        }
+        &:last-child {
+            right: 10px;
+        }
+    }
 }
 
-.tracklist__item span {
-    &:first-child {
-        max-width: 175px;
-    }
-    &:last-child {
-        right: 10px;
-    }
-}
